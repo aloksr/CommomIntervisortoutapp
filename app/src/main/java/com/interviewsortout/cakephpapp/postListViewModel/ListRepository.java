@@ -1,0 +1,50 @@
+package com.interviewsortout.cakephpapp.postListViewModel;
+
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import com.interviewsortout.cakephpapp.model.PostListModel;
+import com.interviewsortout.cakephpapp.network.ApiClient;
+import com.interviewsortout.cakephpapp.network.ApiInterface;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ListRepository {
+    private static final String TAG = "TodoRepository";
+    private static final ListRepository ourInstance = new ListRepository();
+    private ApiInterface getDataService;
+    private MutableLiveData<List<PostListModel>> todoListLiveData = new MutableLiveData<>();
+    private MutableLiveData<PostListModel> todoLiveData = new MutableLiveData<>();
+
+    private ListRepository() {
+        getDataService = ApiClient.getClient().create(ApiInterface.class);
+    }
+
+    public static ListRepository getInstance() {
+        return ourInstance;
+    }
+
+    public LiveData<List<PostListModel>> getlistData() {
+        getDataService.getPostListData(29, "list").enqueue(new Callback<List<PostListModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<PostListModel>> call, @NonNull Response<List<PostListModel>> response) {
+                todoListLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<PostListModel>> call, @NonNull Throwable t) {
+                Log.d(TAG, "onFailure: failed to fetch todo list from server");
+            }
+        });
+
+        return todoListLiveData;
+    }
+}
+
