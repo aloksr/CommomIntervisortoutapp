@@ -11,4 +11,9 @@ public interface AppConstant {
         String TITLE ="title";
         String WEB_URL ="web_url";
     }
+
+    interface FLAVOR_IDS {
+        String CAKE_PHP = "cakephp";
+        String PYTHON = "python";
+    }
 }

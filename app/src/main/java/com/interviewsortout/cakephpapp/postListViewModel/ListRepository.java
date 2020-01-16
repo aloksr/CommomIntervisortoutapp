@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.interviewsortout.cakephpapp.AppConstant;
+import com.interviewsortout.cakephpapp.BuildConfig;
 import com.interviewsortout.cakephpapp.model.PostListModel;
 import com.interviewsortout.cakephpapp.network.ApiClient;
 import com.interviewsortout.cakephpapp.network.ApiInterface;
@@ -18,21 +20,22 @@ import retrofit2.Response;
 
 public class ListRepository {
     private static final String TAG = "TodoRepository";
-    private static final ListRepository ourInstance = new ListRepository();
-    private ApiInterface getDataService;
+    private static  ListRepository ourInstance ;
     private MutableLiveData<List<PostListModel>> todoListLiveData = new MutableLiveData<>();
-    private MutableLiveData<PostListModel> todoLiveData = new MutableLiveData<>();
 
     private ListRepository() {
-        getDataService = ApiClient.getClient().create(ApiInterface.class);
+        //Nothing to do
     }
 
-    public static ListRepository getInstance() {
+    public static synchronized ListRepository getInstance() {
+        if(ourInstance == null){
+            ourInstance = new ListRepository();
+        }
         return ourInstance;
     }
 
     public LiveData<List<PostListModel>> getlistData() {
-        getDataService.getPostListData(29, "list").enqueue(new Callback<List<PostListModel>>() {
+        ApiClient.getClient().create(ApiInterface.class).getPostListData(getID(), "list").enqueue(new Callback<List<PostListModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<PostListModel>> call, @NonNull Response<List<PostListModel>> response) {
                 todoListLiveData.setValue(response.body());
@@ -45,6 +48,20 @@ public class ListRepository {
         });
 
         return todoListLiveData;
+    }
+
+    private int getID() {
+        int value = 0;
+        switch (BuildConfig.FLAVOR){
+            case AppConstant.FLAVOR_IDS.CAKE_PHP:
+                value = 29;
+                break;
+            case AppConstant.FLAVOR_IDS.PYTHON:
+                value = 1284;
+                break;
+        }
+
+        return value;
     }
 }
 

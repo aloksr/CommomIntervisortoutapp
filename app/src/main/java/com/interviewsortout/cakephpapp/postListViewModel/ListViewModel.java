@@ -11,14 +11,13 @@ import java.util.List;
 public class ListViewModel extends ViewModel {
 
     private static final String TAG = "ListViewModel";
-    private ListRepository repository = ListRepository.getInstance();
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private LiveData<List<PostListModel>> todoLiveData;
 
     public ListViewModel() {
         super();
         isLoading.setValue(true);
-        todoLiveData = repository.getlistData();
+        todoLiveData = ListRepository.getInstance().getlistData();
     }
 
     @Override

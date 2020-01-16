@@ -94,7 +94,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         public void bindData(PostListModel courseListModel) {
             txvTitle.setText(courseListModel.getTitle());
             if (!TextUtils.isEmpty(courseListModel.getImage())) {
-                Picasso.with(itemView.getContext()).load(courseListModel.getImage()).placeholder(R.drawable.placeholder_others).into(ivPostImage);
+                Picasso.get().load(courseListModel.getImage()).placeholder(R.drawable.placeholder_others).into(ivPostImage);
             } else {
                 ivPostImage.setImageResource(R.drawable.placeholder_others);
             }

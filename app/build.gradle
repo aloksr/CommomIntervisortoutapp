@@ -4,12 +4,12 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
     defaultConfig {
-        applicationId "com.interviewsortout.cakephp"
+        applicationId "${GROUP_ID}"
         minSdkVersion 15
         targetSdkVersion 29
+        vectorDrawables.useSupportLibrary = true
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionName '1.0.0'
         flavorDimensions "default"
     }
     signingConfigs {
@@ -32,26 +32,36 @@ android {
 
         }
     }
-    dataBinding {
-        enabled = true
-    }
 
     productFlavors {
-        cakephp {
-            applicationId "com.interviewsortout.cakephp"
-            versionCode 1
-            versionName '1.0.0'
-
-        }
         python {
             applicationId "com.interviewsortout.python"
             versionCode 1
             versionName '1.0.0'
+            ext {
+                APP_BASE_URL = [debug: "${BASE_URL_DEBUG}", release: "${BASE_URL_PRODUCTION}"]
+            }
 
         }
+        cakephp {
+            applicationId "com.interviewsortout.cakephp"
+            versionCode 1
+            versionName '1.0.0'
+            ext {
+                APP_BASE_URL = [debug: "${BASE_URL_DEBUG}", release: "${BASE_URL_PRODUCTION}"]
+            }
 
+        }
     }
 
+    applicationVariants.all { variant ->
+        def flavor = variant.productFlavors[0]
+        variant.buildConfigField "String", "BASE_URL", "${flavor.ext.APP_BASE_URL[variant.buildType.name]}"
+    }
+
+    dataBinding {
+        enabled = true
+    }
 
 }
 
@@ -63,16 +73,16 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     // retrofit, gson
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.support:cardview-v7:29.0.0'
     implementation 'com.android.support:recyclerview-v7:29.0.0'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.google.android.gms:play-services-ads:18.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
     //live data dependency
-    implementation "android.arch.lifecycle:extensions:1.1.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
 }
