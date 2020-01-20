@@ -15,5 +15,6 @@ public interface AppConstant {
     interface FLAVOR_IDS {
         String CAKE_PHP = "cakephp";
         String PYTHON = "python";
+        String JAVASCRIPT = "javascript";
     }
 }

@@ -128,7 +128,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/python launcher.png" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/ic_launcher.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -59,6 +59,9 @@ public class ListRepository {
             case AppConstant.FLAVOR_IDS.PYTHON:
                 value = 1284;
                 break;
+            case AppConstant.FLAVOR_IDS.JAVASCRIPT:
+                value = 35;
+                break;
         }
 
         return value;

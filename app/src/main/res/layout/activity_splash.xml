@@ -9,7 +9,7 @@
         tools:context="com.interviewsortout.cakephpapp.SplashActivity">
     <ImageView android:layout_width="200dp"
                android:layout_height="200dp"
-               android:src="@mipmap/ic_launcher"
+               android:src="@drawable/ic_launcher"
                app:layout_constraintStart_toStartOf="parent"
                android:layout_marginTop="@dimen/dimen_dp_65"
                app:layout_constraintRight_toRightOf="parent"

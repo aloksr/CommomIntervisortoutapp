@@ -34,10 +34,19 @@ android {
     }
 
     productFlavors {
-        python {
-            applicationId "com.interviewsortout.python"
+        javascript {
+            applicationId "com.interviewsortout.javascript"
             versionCode 1
             versionName '1.0.0'
+            ext {
+                APP_BASE_URL = [debug: "${BASE_URL_DEBUG}", release: "${BASE_URL_PRODUCTION}"]
+            }
+
+        }
+        python {
+            applicationId "com.interviewsortout.python"
+            versionCode 2
+            versionName '1.0.1'
             ext {
                 APP_BASE_URL = [debug: "${BASE_URL_DEBUG}", release: "${BASE_URL_PRODUCTION}"]
             }
@@ -52,6 +61,7 @@ android {
             }
 
         }
+
     }
 
     applicationVariants.all { variant ->

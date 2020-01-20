@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="offline_library_enabled">true</bool>
+    <bool name="detail_page_like_comment_view">true</bool>
+    <bool name="isDynamicLandingRequired">true</bool>
+    <bool name="isManualSwipeTutorial">false</bool>
+    <bool name="isTocFragmentRequired">true</bool>
+    <bool name="isLikedUserListingRequired">true</bool>
+    <bool name="screenShotNotRequired">false</bool>
+    <bool name="isProductTrainingFragmentRequired">true</bool>
+    <bool name="baseholder_like_comment_view">true</bool>
+    <bool name="feeds_dialog_page_activitytype_check">true</bool>
+    <bool name="isNotesDetailPageRemovalRequired">true</bool>
+    <bool name="isVideoDetailPageRemovalRequired">true</bool>
+    <bool name="is_message_v2">true</bool>
+    <bool name="is_calender_v2">true</bool>
+    <bool name="isAnalyticsRequired">false</bool>
+    <bool name="isDynamicLandingBannerRequired">true</bool>
+    <bool name="isMultipleAssignmentUploadRequired">true</bool>
+    <bool name="isDynamicBottumTabRequired">true</bool>
+</resources>
